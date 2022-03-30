@@ -1,3 +1,5 @@
+const LoginPage = require("./LoginPage");
+
 const { I } = inject();
 
 module.exports = {

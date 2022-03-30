@@ -1,3 +1,4 @@
+require('dotenv').config();
 const { I } = inject();
 
 module.exports = {
@@ -52,10 +53,10 @@ module.exports = {
      */
     login() {
         I.waitForElement(this.elements.email);
-        I.fillField(this.elements.email, 'ersin+test@gmail.com');
+        I.fillField(this.elements.email, process.env.USER_EMAIL);
         I.waitForElement(this.elements.password);
         I.click(this.elements.password);
-        I.type('Test123!', 100);
+        I.type(process.env.USER_PASSWORD, 100);
         I.click(this.elements.loginButton);
     }
 }
