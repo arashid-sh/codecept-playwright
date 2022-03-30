@@ -23,7 +23,7 @@ module.exports = {
         },
         infoSignupQuestions : {
             css: '[data-qaid="info_questions"]',
-        }
+        },
     },
 
     /**
@@ -58,5 +58,13 @@ module.exports = {
         I.click(this.elements.password);
         I.type(process.env.USER_PASSWORD, 100);
         I.click(this.elements.loginButton);
-    }
+    },
+
+    /**
+     * clicks forgot password link on login page
+     */
+     clickForgotPasswordLink() {
+        I.waitForElement(this.elements.forgotPasswordLink);
+        I.click(this.elements.forgotPasswordLink);
+    },
 }
