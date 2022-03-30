@@ -1,10 +1,11 @@
 const { devices } = require('playwright');
+require('dotenv').config();
 
 exports.config = {
   output: './output',
   helpers: {
     Playwright: {
-      url: 'https://qa-app.sidecarhealth.com',
+      url: `https://${process.env.ENVIRONMENT}.sidecarhealth.com`,
       show: true,
       browser: 'chromium',
       waitForTimeout: 20000,
