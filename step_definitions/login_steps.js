@@ -1,6 +1,7 @@
 const loginPage = require("../pages/LoginPage");
 const signupPage = require("../pages/SignupPage");
 const homePage = require("../pages/HomePage");
+const forgotPasswordPage = require("../pages/ForgotPasswordPage");
 
 const { I } = inject();
 
@@ -24,4 +25,16 @@ Then('I validate authenticated user dashboard', async () => {
 
 Then('I validate signup page appears', async () => {
     await signupPage.verifySignupPage();
+});
+
+When('I click forgot password', async () => {
+    await loginPage.clickForgotPasswordLink();
+});
+
+When('I verify forgot password page', async () => {
+    forgotPasswordPage.verifyForgotPasswordPage();
+});
+
+Then('I validate resetting my password', async () => {
+    await forgotPasswordPage.verifyResettingPassword();
 });
