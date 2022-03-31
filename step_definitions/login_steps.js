@@ -4,6 +4,7 @@ const homePage = require("../pages/HomePage");
 const forgotPasswordPage = require("../pages/ForgotPasswordPage");
 
 const { I } = inject();
+require('dotenv').config();
 
 Given('I navigate to login page', () => {
     I.amOnPage('/');
@@ -16,7 +17,15 @@ Given('I verify login page', async() => {
 });
 
 When('I login to system', () => {
-    loginPage.login();
+    loginPage.login(process.env.USER_EMAIL, process.env.USER_PASSWORD);
+});
+
+When('I try to login with invalid credentials', () => {
+    loginPage.login(process.env.USER_EMAIL, `${process.env.USER_PASSWORD}1`);
+}); 
+
+When('I validate invalid login response', () => {
+    loginPage.validateInvalidLogin();
 });
 
 Then('I validate authenticated user dashboard', async () => {

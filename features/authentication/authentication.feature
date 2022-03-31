@@ -1,6 +1,6 @@
 Feature: Sidecar Login Feature
     
-    Scenario: Login with valid credentials
+    Scenario: User should be able to login with valid credentials
         Given I navigate to login page
         And I verify login page
         When I login to system
@@ -12,3 +12,7 @@ Feature: Sidecar Login Feature
         And I verify forgot password page
         Then I validate resetting my password
 
+    Scenario: User should receive error on invalid credentials login attempt
+        Given I navigate to login page
+        When I try to login with invalid credentials
+        Then I validate invalid login response
