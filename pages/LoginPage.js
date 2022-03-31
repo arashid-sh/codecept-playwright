@@ -1,4 +1,4 @@
-require('dotenv').config();
+
 const { I } = inject();
 
 module.exports = {
@@ -51,13 +51,17 @@ module.exports = {
     /**
      * function to login to system
      */
-    login() {
+    login(email, password) {
         I.waitForElement(this.elements.email);
-        I.fillField(this.elements.email, process.env.USER_EMAIL);
+        I.fillField(this.elements.email, email);
         I.waitForElement(this.elements.password);
         I.click(this.elements.password);
-        I.type(process.env.USER_PASSWORD, 100);
+        I.type(password, 100);
         I.click(this.elements.loginButton);
+    },
+
+    validateInvalidLogin(){
+        I.see('Oops! Your email or password is incorrect.')
     },
 
     /**
