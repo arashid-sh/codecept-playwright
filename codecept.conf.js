@@ -6,7 +6,7 @@ exports.config = {
   helpers: {
     Playwright: {
       url: `https://${process.env.ENVIRONMENT}.sidecarhealth.com`,
-      show: true,
+      show: false,
       browser: 'chromium',
       waitForTimeout: 20000,
       waitForNavigation: "domcontentloaded",
