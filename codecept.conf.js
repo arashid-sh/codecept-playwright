@@ -6,7 +6,7 @@ exports.config = {
   helpers: {
     Playwright: {
       url: `https://${process.env.ENVIRONMENT}.sidecarhealth.com`,
-      show: false,
+      show: true,
       browser: 'chromium',
       waitForTimeout: 20000,
       waitForNavigation: "domcontentloaded",
@@ -17,7 +17,7 @@ exports.config = {
   mocha: {},
   name: 'sidecar',
   gherkin: {
-    features: './features/**/*.feature',
+    features: './features/*.feature',
     steps: './step_definitions/*.js',
   },
   plugins:{
