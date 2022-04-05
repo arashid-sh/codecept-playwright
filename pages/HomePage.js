@@ -27,7 +27,7 @@ module.exports = {
      * A function to navigate accoutn page
      */
          async navigateToAccountPage() {
-             I.wait(1);
+            I.waitForElement(this.elements.haveQuestionsBtn);
             I.seeElement(this.elements.accountButton);
             I.click(this.elements.accountButton);
         }
