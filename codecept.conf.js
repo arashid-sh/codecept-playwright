@@ -17,7 +17,7 @@ exports.config = {
   mocha: {},
   name: 'sidecar',
   gherkin: {
-    features: './features/**/*.feature',
+    features: './features/*.feature',
     steps: './step_definitions/*.js',
   },
   plugins:{
