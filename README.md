@@ -8,3 +8,8 @@ User manual;
   `npm install`
 
   DONE!!
+
+
+How to use prettier:
+- once you are done with your codes, run:
+ `npx prettier --write .`
