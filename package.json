@@ -11,7 +11,11 @@
   "license": "ISC",
   "devDependencies": {
     "codeceptjs": "^3.3.0",
-    "playwright": "^1.20.0"
+    "eslint": "^8.13.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "playwright": "^1.20.0",
+    "prettier": "2.6.2"
   },
   "dependencies": {
     "@cucumber/cucumber": "^7.3.2",

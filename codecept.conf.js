@@ -1,28 +1,28 @@
-const { devices } = require('playwright');
-require('dotenv').config();
+const { devices } = require("playwright");
+require("dotenv").config();
 
 exports.config = {
-  output: './output',
+  output: "./output",
   helpers: {
     Playwright: {
       url: `https://${process.env.ENVIRONMENT}.sidecarhealth.com`,
       show: false,
-      browser: 'chromium',
+      browser: "chromium",
       waitForTimeout: 20000,
       waitForNavigation: "domcontentloaded",
       waitForAction: 500,
-    }
+    },
   },
   bootstrap: null,
   mocha: {},
-  name: 'sidecar',
+  name: "sidecar",
   gherkin: {
-    features: './features/*.feature',
-    steps: './step_definitions/*.js',
+    features: "./features/*.feature",
+    steps: "./step_definitions/*.js",
   },
-  plugins:{
+  plugins: {
     screenshotOnFail: {
-      enabled: true
-    }
-  }
-}
+      enabled: true,
+    },
+  },
+};
