@@ -1,6 +1,5 @@
 # sidecar_e2e_web
 
-
 User manual;
 
 - install nodejs (https://nodejs.org/en/download/)
