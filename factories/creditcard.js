@@ -17,10 +17,6 @@ const CARD_TYPES = {
 
 /**
  * test card numbers.
- * https://www.paypalobjects.com/en_US/vhelp/paypalmanager_help/credit_card_numbers.htm
- *
- * @readonly
- * @enum {Array}
  */
 const CARDS = [
   { type: CARD_TYPES.AMEX, number: '378282246310005' },
