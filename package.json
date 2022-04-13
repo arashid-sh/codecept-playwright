@@ -21,6 +21,8 @@
     "@cucumber/cucumber": "^7.3.2",
     "chromedriver": "^99.0.0",
     "dotenv": "^16.0.0",
-    "gitignore": "^0.7.0"
+    "faker": "^4.1.0",
+    "gitignore": "^0.7.0",
+    "rosie": "^2.1.0"
   }
 }
