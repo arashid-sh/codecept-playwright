@@ -36,7 +36,7 @@ const CARDS = [
  * @returns {{type:string, number: string, cvv: string}}
  */
 const getCreditCard = () => {
-  const cardToPick = getRandomInt(0, 3);
+  const cardToPick = getRandomInt(0, 5);
   const card = CARDS[cardToPick];
   card.cvv = faker.random
     .number(9999)
@@ -72,4 +72,5 @@ module.exports = new Factory()
       cvv: randomCard.cvv,
       postalCode: faker.address.zipCode('#####'),
     };
+    
   });
