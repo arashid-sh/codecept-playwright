@@ -16,7 +16,3 @@ Feature: Sidecar Login Feature
         Given I navigate to login page
         When I try to login with invalid credentials
         Then I validate invalid login response
-
-    Scenario: User should receive erroron 
-        Given I navigate to login page
-        When I login with customer

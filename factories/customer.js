@@ -16,10 +16,10 @@ module.exports = {
 
   async createCustomer() {
     const customer ={
-    firstName : `${faker.name.firstName()}-shTest`,
-    lastName : `${faker.name.lastName()}-shTest`,
+    firstName : `${faker.name.firstName()}-scqa`,
+    lastName : `${faker.name.lastName()}-scqa`,
     password : faker.internet.password(),
-    email : faker.internet.email().replace('@', '_shTest@'),
+    email : faker.internet.email().replace('@', 'scqa@'),
     birthday: faker.date.between('1965-01-01', '2000-01-05'),
     zipcode: getRandomInt(0,9).toString().padStart(5, 8410),
     gender: getRandomGender(),
