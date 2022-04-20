@@ -1,5 +1,6 @@
 const homePage = require("../pages/HomePage");
 const accountPage = require("../pages/AccountPage");
+const customerFactory = require('../factories/customer');
 const Card = require('../factories/creditcard');
 
 Given("I navigate to account page", async () => {
