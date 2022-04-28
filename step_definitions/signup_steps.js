@@ -10,3 +10,4 @@ Given("I register a user with {string} package", async (package) => {
 Then("I validate order summary page appears", async () => {
     await signupPage.verifySingupOrderSummary();
   });
+  

@@ -39,7 +39,7 @@ module.exports = {
   },
 
  /**
-   * A function for mavigating to signup page
+   * A function for navigating to signup page
    */
   async navigateSignupPage() {
     I.waitForElement(this.elements.signUpLink);
