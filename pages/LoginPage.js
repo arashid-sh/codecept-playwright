@@ -11,7 +11,7 @@ module.exports = {
     loginButton: {
       css: "[data-qaid=btn_login]",
     },
-    signupButton: {
+    signUpLink: {
       css: "[data-qaid=link_signup]",
     },
     forgotPasswordLink: {
@@ -38,13 +38,12 @@ module.exports = {
     I.see("Don't have an account?");
   },
 
-  /**
-   * clicks signup button on login page
+ /**
+   * A function for mavigating to signup page
    */
-
-  clickSignupButton() {
-    I.waitForElement(this.elements.signupButton);
-    I.click(this.elements.signupButton);
+  async navigateSignupPage() {
+    I.waitForElement(this.elements.signUpLink);
+    I.click(this.elements.signUpLink);
   },
 
   /**

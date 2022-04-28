@@ -1,6 +1,10 @@
 const { I } = inject();
 const faker = require('faker');
-const { getRandomInt, getRandomGender } = require('../lib/util');
+const { getRandomInt } = require('../lib/util');
+require("dotenv").config();
+
+//set local language to english
+faker.locale = 'en';
 
 module.exports = {
 
@@ -16,32 +20,19 @@ module.exports = {
 
   async createCustomer() {
     const customer ={
-    firstName : `${faker.name.firstName()}-scqa`,
-    lastName : `${faker.name.lastName()}-scqa`,
-    password : faker.internet.password(),
+    firstName : `${faker.name.firstName()}scqa`,
+    lastName : `${faker.name.lastName()}scqa`,
+    password : process.env.USER_PASSWORD,
     email : faker.internet.email().replace('@', 'scqa@'),
     birthday: faker.date.between('1965-01-01', '2000-01-05'),
-    zipcode: getRandomInt(0,9).toString().padStart(5, 8410),
-    gender: getRandomGender(),
+    ssn: getRandomInt(10000000,999999999),
+    streetAddress : '2800 MACGREGOR WAY',
+    //streetAddress : faker.address.streetAddress(),
+    zipcode: '77021',
+    //zipcode: getRandomInt(1,9).toString().padStart(5, 8410),
+    gender: faker.random.arrayElement(["MALE","FEMALE"]),
+    phoneNumber: faker.phone.phoneNumberFormat(),
     }
     return customer;
   },
-
-  /**
- * Helper function to generate a random phone numbers in ########## format
- * (faker and chance both have issues generating fake US numbers ATM)
- *
- * @name getPhoneNumber
- * @function
- * @returns {string}
- */
-   async getPhoneNumber()  {
-    const phoneNumber ={
-   areaCode : getRandomInt(200, 999),
-   exchange : getRandomInt(200, 999),
-   number : getRandomInt(0, 9999).toString().padStart(4, '0'),
-  }
-  const customerPhone =`${phoneNumber.areaCode}`+`${phoneNumber.exchange}`+`${phoneNumber.number}`;
-  return customerPhone;
-},
 };
