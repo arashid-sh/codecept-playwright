@@ -12,4 +12,4 @@ Feature: Sidecar Registration Flow
         |basicPackage|
         |essentialPackage|
         |premiumPackage|
-        |btn_select_customizedPackage|
+        |customizedPackage|
