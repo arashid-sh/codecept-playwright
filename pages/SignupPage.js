@@ -98,10 +98,10 @@ module.exports = {
   },
 
     /**
-   * A function to register a user with provided package
+   * A function to register an eb user with provided package
    * @param {string} package name of the coverage
    */
-     async registerUser(package) {
+     async registerEbUser(package) {
       const card = Card.build();
       await accountPage.getPaymentInfo(card);
       const customer = await customerFactory.createCustomer();
@@ -141,6 +141,12 @@ module.exports = {
       //I.waitForElement(this.elements.submitAndPayButton);
       I.click(this.elements.submitAndPayButton);
     },
+
+    // async fillFrame(iframe, field, text) {
+    //   within({},()=>{
+    //     I.fillField(field, text)
+    //   })
+    // }
 
 
   /**
