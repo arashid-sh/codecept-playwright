@@ -150,13 +150,6 @@ module.exports = {
       I.click(this.elements.submitAndPayButton);
     },
 
-    // async fillFrame(iframe, field, text) {
-    //   within({},()=>{
-    //     I.fillField(field, text)
-    //   })
-    // }
-
-
   /**
    * A function to validate order confirmation on signup page
    */
