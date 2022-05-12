@@ -28,15 +28,19 @@ When("I validate invalid login response", () => {
   loginPage.validateInvalidLogin();
 });
 
-Then("I validate authenticated user dashboard", async () => {
+Then("I validate authenticated user dashboard appears", async () => {
   await homePage.verifyDashboardPage();
 });
 
-Then("I validate signup page appears", async () => {
+Given("I navigate to sign up page", async () => {
+  await loginPage.navigateSignupPage();
+});
+
+Then("I validate sign up page appears", async () => {
   await signupPage.verifySignupPage();
 });
 
-When("I click forgot password", async () => {
+When("I navigate to forgot password page", async () => {
   await loginPage.clickForgotPasswordLink();
 });
 

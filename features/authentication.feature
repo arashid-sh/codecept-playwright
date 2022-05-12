@@ -1,14 +1,14 @@
-Feature: Sidecar Login Feature
+Feature: Sidecar Login Flow
     
     Scenario: User should be able to login with valid credentials
         Given I navigate to login page
         And I verify login page
         When I login to system
-        Then I validate authenticated user dashboard
+        Then I validate authenticated user dashboard appears
     
     Scenario: User should be able to reset the password
         Given I navigate to login page
-        When I click forgot password
+        When I navigate to forgot password page
         And I verify forgot password page
         Then I validate resetting my password
 
