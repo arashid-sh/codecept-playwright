@@ -97,6 +97,14 @@ module.exports = {
     I.waitForText("First, where do you live?");
   },
 
+  /**
+   * A function to select generated customer's gender.
+   * @param {string} gender is registered user's gender. Created by createCustomer() function
+   */
+  async selectGender(gender){
+    I.click(`[data-qaid=input_${gender}-label]`);
+  },
+
     /**
    * A function to register an eb user with provided package
    * @param {string} package name of the coverage
@@ -114,7 +122,7 @@ module.exports = {
       I.fillField(this.elements.customerLastName, customer.lastName);
       I.fillField(LoginPage.elements.email, customer.email);
       I.fillField(this.elements.customerBirthday, customer.birthday);
-      I.click(`[data-qaid=input_${customer.gender}-label]`);
+      this.selectGender(customer.gender);
       I.scrollPageToBottom();
       I.click(this.elements.seeQuotesButton);
       I.waitForElement(`[data-qaid=btn_select_${package}]`);
