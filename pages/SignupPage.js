@@ -146,7 +146,6 @@ module.exports = {
       I.click(this.elements.agreeAcknowledgement);
       I.click(this.elements.reviewApplication);
       I.waitForText('Before submitting');
-      //I.waitForElement(this.elements.submitAndPayButton);
       I.click(this.elements.submitAndPayButton);
     },
 
