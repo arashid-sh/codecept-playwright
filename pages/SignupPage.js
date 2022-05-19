@@ -117,7 +117,7 @@ module.exports = {
       I.waitForElement(this.elements.zipCode);
       I.fillField(this.elements.zipCode, customer.zipcode);
       I.click(this.elements.continueButton);
-      I.waitForElement(this.elements.customerName);
+      I.waitForElement(this.elements.customerName,5);
       I.fillField(this.elements.customerName, customer.firstName);
       I.fillField(this.elements.customerLastName, customer.lastName);
       I.fillField(LoginPage.elements.email, customer.email);
@@ -125,7 +125,7 @@ module.exports = {
       this.selectGender(customer.gender);
       I.scrollPageToBottom();
       I.click(this.elements.seeQuotesButton);
-      I.waitForElement(`[data-qaid=btn_select_${package}]`);
+      I.waitForElement(`[data-qaid=btn_select_${package}]`,15);
       I.click(`[data-qaid=btn_select_${package}]`);
       I.waitForElement(LoginPage.elements.password);
       I.click(LoginPage.elements.password);
@@ -145,7 +145,7 @@ module.exports = {
       I.click(this.elements.agreeElectronicSent);
       I.click(this.elements.agreeAcknowledgement);
       I.click(this.elements.reviewApplication);
-      I.waitForText('Before submitting');
+      I.waitForText('Before submitting',15);
       I.click(this.elements.submitAndPayButton);
     },
 
@@ -153,7 +153,7 @@ module.exports = {
    * A function to validate order confirmation on signup page
    */
   async verifySingupOrderSummary() {
-    I.waitForText('Congrats! Your policy starts');
+    I.waitForText('Congrats! Your policy starts',15);
     I.waitForText('Order summary');
   },
 };
