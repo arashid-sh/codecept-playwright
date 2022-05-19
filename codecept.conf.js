@@ -8,7 +8,7 @@ exports.config = {
       url: `https://${process.env.ENVIRONMENT}.sidecarhealth.com`,
       show: false,
       browser: "chromium",
-      waitForTimeout: 20000,
+      waitForTimeout: 25000,
       waitForNavigation: "domcontentloaded",
       waitForAction: 500,
     },
