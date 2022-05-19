@@ -117,7 +117,7 @@ module.exports = {
       I.waitForElement(this.elements.zipCode);
       I.fillField(this.elements.zipCode, customer.zipcode);
       I.click(this.elements.continueButton);
-      I.waitForElement(this.elements.customerName,15);
+      I.waitForElement(this.elements.customerName,5);
       I.fillField(this.elements.customerName, customer.firstName);
       I.fillField(this.elements.customerLastName, customer.lastName);
       I.fillField(LoginPage.elements.email, customer.email);
