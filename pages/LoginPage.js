@@ -30,11 +30,11 @@ module.exports = {
    */
 
   async verifyLoginPage() {
-    I.waitForElement(this.elements.email);
-    I.waitForElement(this.elements.password);
-    I.waitForElement(this.elements.forgotPasswordLink);
-    I.waitForElement(this.elements.infoSignupLogin);
-    I.waitForElement(this.elements.infoSignupQuestions);
+    I.seeElement(this.elements.email,10);
+    I.seeElement(this.elements.password);
+    I.seeElement(this.elements.forgotPasswordLink);
+    I.seeElement(this.elements.infoSignupLogin);
+    I.seeElement(this.elements.infoSignupQuestions);
     I.see("Don't have an account?");
   },
 
