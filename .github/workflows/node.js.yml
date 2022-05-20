@@ -12,7 +12,7 @@ on:
 jobs:
   build:
 
-    runs-on: Organization
+    runs-on: development-5
 
     strategy:
       matrix:
