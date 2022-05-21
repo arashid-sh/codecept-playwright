@@ -12,7 +12,7 @@ on:
 jobs:
   build:
 
-    runs-on: [self-hosted, development]
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:
