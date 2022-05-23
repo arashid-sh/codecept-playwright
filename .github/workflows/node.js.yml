@@ -12,7 +12,7 @@ on:
 jobs:
   build:
 
-    runs-on: [ self-hosted, qa, Linux ]
+    runs-on: [ self-hosted, development-android ]
 
     strategy:
       matrix:
@@ -27,6 +27,5 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm install
-    - run: npm install -g npx
-    - run: sudo npx playwright install-deps
+    - run: npx playwright install-deps
     - run: npx codeceptjs run --steps
