@@ -1,6 +1,6 @@
 const { I } = inject();
 const faker = require('faker');
-const { getRandomInt } = require('../lib/util');
+//const { getRandomInt } = require('../lib/util');
 require("dotenv").config();
 
 //set local language to english
@@ -25,7 +25,14 @@ module.exports = {
     password : process.env.USER_PASSWORD,
     email : faker.internet.email().replace('@', 'scqa@'),
     birthday: faker.date.between('1965-01-01', '2000-01-05'),
-    ssn: getRandomInt(10000000,999999999),
+    ssn: faker.random.arrayElement(["048-34-2936",
+    "574-56-3085",
+    "518-52-5192",
+    "757-10-3344",
+    "530-74-8244",
+    "498-44-4734",
+    "503-76-6945",
+    "428-84-6441",]), //getRandomInt(10000000,999999999),
     streetAddress : '2800 MACGREGOR WAY',
     //streetAddress : faker.address.streetAddress(),
     zipcode: '77021',
