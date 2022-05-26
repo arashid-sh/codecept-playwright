@@ -92,7 +92,7 @@ module.exports = {
 
   async verifySignupPage() {
 
-    I.seeElement(this.elements.zipCode);
+    I.waitForElement(this.elements.zipCode,5);
     I.waitForText("Start your insurance quote now");
     I.waitForText("First, where do you live?");
   },
