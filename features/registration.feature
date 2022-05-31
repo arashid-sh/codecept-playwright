@@ -1,5 +1,5 @@
 Feature: Sidecar Registration Flow
- 
+    @Smoke
     Scenario Outline: User should be able to register
         Given I navigate to login page
         And I navigate to sign up page

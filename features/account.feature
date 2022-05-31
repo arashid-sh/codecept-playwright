@@ -1,5 +1,5 @@
 Feature: Account tests should be under this section
-    
+    @Smoke
     Scenario Outline: User should be able to see account tabs
         Given I navigate to login page
         And I login to system
