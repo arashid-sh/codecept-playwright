@@ -68,6 +68,9 @@ module.exports = {
     submitAndPayButton: {
       css: '[data-qaid="btn_buyNow"]',
     },
+    submitPaymentModal: {
+      css: '[data-qaid="info_modalBackground"]',
+    },
     zipCode: {
       css: '[data-qaid=input_zipCode]',
     },
@@ -145,7 +148,7 @@ module.exports = {
       I.click(this.elements.agreeElectronicSent);
       I.click(this.elements.agreeAcknowledgement);
       I.click(this.elements.reviewApplication);
-      I.waitForElement(this.elements.submitAndPayButton,20);
+      I.waitForElement(this.elements.submitAndPayButton, this.elements.submitPaymentModal);
       I.click(this.elements.submitAndPayButton);
     },
 
