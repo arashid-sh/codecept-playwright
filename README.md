@@ -9,7 +9,12 @@ User manual;
 
   DONE!!
 
+How to run steps;
+- For smoke test cases; 
+`npm run test:smoke`
+- For regression test cases;
+`npm run test:regression`
 
-How to use prettier:
-- once you are done with your codes, run:
+How to use prettier to format your codes;
+- once you are done with your PR, run:
  `npx prettier --write .`

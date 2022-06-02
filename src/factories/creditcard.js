@@ -1,6 +1,6 @@
 const { Factory } = require('rosie');
 const faker = require('faker');
-const { getRandomInt } = require('../lib/util');
+const { getRandomInt } = require('.././lib/util');
 
 /**
  * The card types that Braintree supports
