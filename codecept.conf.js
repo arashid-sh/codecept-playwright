@@ -18,7 +18,7 @@ exports.config = {
   name: "sidecar",
   gherkin: {
     features: "./features/*.feature",
-    steps: "./step_definitions/*.js",
+    steps: "./src/step_definitions/*.js",
   },
   plugins: {
     screenshotOnFail: {
