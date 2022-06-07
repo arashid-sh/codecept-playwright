@@ -1,4 +1,4 @@
-# Feature: Sidecar Login Flow
+Feature: Sidecar Login Flow
 #     @Smoke
 #     Scenario: User should be able to login with valid credentials
 #         Given I navigate to login page

@@ -1,5 +1,6 @@
 Feature: Account tests should be under this section
-    @Smoke @C149
+    @Smoke 
+    @C149
     Scenario Outline: User should be able to see account tabs
         Given I navigate to login page
         And I login to system
@@ -9,12 +10,12 @@ Feature: Account tests should be under this section
     Examples: 
               |elements|tabs|
               |link_profile|Profile|
-              |link_coverage|My coverage|
-              |link_billing|Billing|
-              |link_settings|Notifications|
-              |link_cards|Benefit card|
-              |link_documents|Documents|
-              |link_help|Help|
-              |link_signOut|Sign out|
+            #   |link_coverage|My coverage|
+            #   |link_billing|Billing|
+            #   |link_settings|Notifications|
+            #   |link_cards|Benefit card|
+            #   |link_documents|Documents|
+            #   |link_help|Help|
+            #   |link_signOut|Sign out|
 
 
