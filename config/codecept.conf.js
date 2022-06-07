@@ -2,11 +2,11 @@ const { devices } = require('playwright');
 require('dotenv').config({ path: '.env' });
 
 exports.config = {
-  output: './output',
+  output: '../output/web',
   helpers: {
     Playwright: {
       url: process.env.ENVIRONMENT_URL,
-      show: false,
+      show: true,
       browser: 'chromium',
       waitForTimeout: 25000,
       waitForNavigation: 'domcontentloaded',
@@ -27,14 +27,17 @@ exports.config = {
       enabled: true,
     },
     testrail: {
+      enabled: true,
       require: 'codeceptjs-testrail',
-      host: 'https://peternguyentr.testrail.io',
+      host: 'https://sidecarhealth.testrail.io',
       user: 'arashid@sidecarhealth.com',
       password: process.env.TESTRAIL_API_KEY,
-      suiteId: 1,
-      projectId: 1,
+      suiteId: 2,
+      projectId: 2,
       runName: 'Testing test rail with sidecar_E2E_web integration',
-      runId: 123,
+      // runId: 123,
+      closeTestRun: true,
+      debugLog: false,
     },
   },
 };
