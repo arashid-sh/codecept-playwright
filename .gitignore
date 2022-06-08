@@ -1,3 +1,9 @@
-node_modules
+node_modules/
+# Output path of test automation
 output/
+# Local environment variables
+.env
+#vscode local settings
+.vscode/
+# Ds_store file
 .DS_Store
