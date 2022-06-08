@@ -34,4 +34,4 @@ jobs:
         if: ${{ always() }}
         with:
           name: test-artifacts
-          path: ./dist/output/web
+          path: output/web/
