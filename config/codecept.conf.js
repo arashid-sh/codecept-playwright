@@ -7,7 +7,7 @@ exports.config = {
   helpers: {
     Playwright: {
       url: process.env.ENVIRONMENT_URL,
-      show: false,
+      show: true,
       browser: 'chromium',
       waitForTimeout: 25000,
       waitForNavigation: 'domcontentloaded',

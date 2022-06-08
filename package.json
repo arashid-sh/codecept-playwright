@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "test:smoke": "npx codeceptjs --config=./config/codecept.conf.js run-workers 1 --suites --grep '(?=.*@Smoke)' --debug --verbose",
+    "test:smoke": "npx codeceptjs --config=./config/codecept.conf.js run-workers 1 --suites --grep '(?=.*@inDev)' --debug --verbose",
     "test:regression": "npx codeceptjs --config=./config/codecept.conf.js run-workers 1 --suites --grep'(?=.*@Regression)' --debug --verbose"
   },
   "keywords": [],
