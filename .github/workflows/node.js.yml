@@ -20,11 +20,18 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      - uses: microsoft/playwright-github-action@v1
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
       - run: npm install --verbose
-      - run: npx playwright install-deps
-      - run: npx codeceptjs --config=./config/codecept.conf.js run-workers 1 --suites --debug --verbose
+      - run: npx playwright install-deps # playwright cli to install dependencies for all browsers
+      - run: npx codeceptjs --config=./config/codecept.conf.js run-workers 1 --suites --verbose
+
+      - uses: actions/upload-artifact@v2
+        if: ${{ always() }}
+        with:
+          name: test-artifacts
+          path: output/web/
