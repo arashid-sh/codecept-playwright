@@ -30,6 +30,7 @@ jobs:
       - run: npx playwright install-deps # playwright cli to install dependencies for all browsers
       - run: npx codeceptjs --config=./config/codecept.conf.js run-workers 1 --suites --verbose
 
+
       - uses: actions/upload-artifact@v2
         if: ${{ always() }}
         with:
