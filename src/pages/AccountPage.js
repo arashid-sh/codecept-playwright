@@ -23,6 +23,9 @@ module.exports = {
     helpButton: {
       css: '[data-qaid="link_help"]',
     },
+    saveChangesButton: {
+      css: '[data-qaid="btn_saveChanges"]',
+    },
     signOutButton: {
       css: '[data-qaid="link_signOut"]',
     },

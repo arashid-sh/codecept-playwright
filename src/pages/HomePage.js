@@ -1,5 +1,6 @@
 const { I } = inject();
 const DoctorsPage = require("./DoctorsPage");
+const AccountPage = require("./AccountPage");
 
 module.exports = {
   elements: {
@@ -33,6 +34,7 @@ module.exports = {
     I.waitForElement(this.elements.haveQuestionsBtn);
     I.seeElement(this.elements.accountButton);
     I.click(this.elements.accountButton);
+    I.waitForElement(AccountPage.elements.saveChangesButton);
   },
 
   /**
