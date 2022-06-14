@@ -1,4 +1,6 @@
 const { I } = inject();
+const DoctorsPage = require("./DoctorsPage");
+const AccountPage = require("./AccountPage");
 
 module.exports = {
   elements: {
@@ -7,6 +9,9 @@ module.exports = {
     },
     dashboardTab: {
       css: "[data-qaid=link_dashboard]",
+    },
+    findDoctorslink: {
+      css: '//h2[contains(text(),"Find doctors")]',
     },
     haveQuestionsBtn: {
       css: '[data-qaid="btn_havequestions"]',
@@ -23,11 +28,22 @@ module.exports = {
   },
 
   /**
-   * A function to navigate accoutn page
+   * A function to navigate account page
    */
   async navigateToAccountPage() {
     I.waitForElement(this.elements.haveQuestionsBtn);
     I.seeElement(this.elements.accountButton);
     I.click(this.elements.accountButton);
+    I.waitForElement(AccountPage.elements.saveChangesButton);
   },
+
+  /**
+   * A function to navigate to doctors page
+   */
+     async navigateToDoctorsPage() {
+      I.waitForElement(this.elements.findDoctorslink);
+      I.click(this.elements.findDoctorslink);
+      I.waitForElement(DoctorsPage.elements.searchField);
+      I.see('Search doctors by specialty');
+    },
 };
