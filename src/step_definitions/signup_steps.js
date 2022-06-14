@@ -8,7 +8,7 @@ Before((test) => {
   sharedStore = contextProvider_1.default.getInstance(test.id).sharedStore;
 });
 
-Given('I register a user with {string} package', async (package) => {
+Given('I register an EB user with {string} package', async (package) => {
   sharedStore.setState({
     firstName: await signupPage.registerEbUser(package),
   });
