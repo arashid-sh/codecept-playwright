@@ -14,6 +14,8 @@ How to run steps;
 `npm run test:smoke`
 - For regression test cases;
 `npm run test:regression`
+- For a specific test to run;
+`npm run test -- --grep "Scenario Name"`
 
 How to use prettier to format your codes;
 - once you are done with your PR, run:

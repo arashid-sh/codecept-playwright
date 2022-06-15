@@ -1,9 +1,10 @@
-const loginPage = require('../pages/LoginPage');
-const signupPage = require('../pages/SignupPage');
-const homePage = require('../pages/HomePage');
-const forgotPasswordPage = require('../pages/ForgotPasswordPage');
+import loginPage from '../pages/LoginPage';
+import homePage from '../pages/HomePage';
+import forgotPasswordPage from '../pages/ForgotPasswordPage';
+import { SignupPage } from '../pages';
 
 const { I } = inject();
+
 require('dotenv').config();
 
 Given('I navigate to login page', () => {
@@ -17,11 +18,17 @@ Given('I verify login page', async () => {
 });
 
 When('I login to system', () => {
-  loginPage.login(process.env.USER_EMAIL, process.env.USER_PASSWORD);
+  loginPage.login(
+    process.env.USER_EMAIL as string,
+    process.env.USER_PASSWORD as string
+  );
 });
 
 When('I try to login with invalid credentials', () => {
-  loginPage.login(process.env.USER_EMAIL, `${process.env.USER_PASSWORD}1`);
+  loginPage.login(
+    process.env.USER_EMAIL as string,
+    `${process.env.USER_PASSWORD}1`
+  );
 });
 
 When('I validate invalid login response', () => {
@@ -37,7 +44,7 @@ Given('I navigate to sign up page', async () => {
 });
 
 Then('I validate sign up page appears', async () => {
-  await signupPage.verifySignupPage();
+  await SignupPage.verifySignupPage();
 });
 
 When('I navigate to forgot password page', async () => {
@@ -48,6 +55,9 @@ When('I verify forgot password page', async () => {
   forgotPasswordPage.verifyForgotPasswordPage();
 });
 
-Then('I validate resetting my password', async () => {
-  await forgotPasswordPage.verifyResettingPassword();
-});
+Then(
+  'I validate resetting my password for {string}',
+  async (emailAddress: string) => {
+    await forgotPasswordPage.verifyResettingPassword(emailAddress);
+  }
+);
