@@ -9,7 +9,7 @@ exports.config = {
     //https://codecept.io/helpers/Playwright/#configuration
     Playwright: {
       url: process.env.ENVIRONMENT_URL,
-      show: true,
+      show: false,
       browser: 'chromium',
       waitForTimeout: 25000,
       getPageTimeout: 180000,

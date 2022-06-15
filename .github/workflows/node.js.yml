@@ -26,7 +26,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-      - run: rm -rf node_modules package-lock.json
       - run: npm install --verbose
       - run: npx playwright install-deps # playwright cli to install dependencies for all browsers
       - run: npx codeceptjs --config=./config/codecept.conf.js run-workers 1 --suites --verbose
