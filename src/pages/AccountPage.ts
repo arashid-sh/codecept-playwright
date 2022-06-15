@@ -30,9 +30,6 @@ export const AccountPage = {
     signOutButton: {
       css: '[data-qaid="link_signOut"]',
     },
-    saveChangesButton: {
-      css: '[data-qaid="btn_saveChanges"]',
-    },
   },
 
   /**
