@@ -12,6 +12,7 @@
     "noUnusedLocals": false,
     "resolveJsonModule": true,
     "noUnusedParameters": false,
+    "moduleResolution": "node",
     "types": ["node", "codeceptjs"]
   },
   "include": ["./**/*.ts", "./src/**/*"]
