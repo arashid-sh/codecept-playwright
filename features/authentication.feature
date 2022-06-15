@@ -11,8 +11,8 @@ Feature: Sidecar Login Flow
         Given I navigate to login page
         When I navigate to forgot password page
         And I verify forgot password page
-        Then I validate resetting my password
-        
+        Then I validate resetting my password for "ersin+test@gmail.com"
+
     @Smoke @C8837
     Scenario: User should receive error on invalid credentials login attempt
         Given I navigate to login page

@@ -1,3 +1,4 @@
+require('ts-node/register');
 const { devices } = require('playwright');
 require('dotenv').config({ path: '.env' });
 var moment = require('moment'); //Node library for date format https://momentjs.com/
@@ -5,6 +6,7 @@ var moment = require('moment'); //Node library for date format https://momentjs.
 exports.config = {
   output: '../output/web',
   helpers: {
+    //https://codecept.io/helpers/Playwright/#configuration
     Playwright: {
       url: process.env.ENVIRONMENT_URL,
       show: false,
@@ -16,6 +18,10 @@ exports.config = {
       waitForAction: 500,
       video: true,
       trace: true,
+      restart: true,
+    },
+    ShortCutStepsHelper: {
+      require: './../src/helpers/ShortCutStepsHelper.ts',
     },
   },
   bootstrap: null,
@@ -23,7 +29,7 @@ exports.config = {
   name: 'sidecar',
   gherkin: {
     features: '../features/*.feature',
-    steps: '../src/step_definitions/*.js',
+    steps: '../src/step_definitions/*.ts',
   },
   plugins: {
     screenshotOnFail: {
@@ -40,7 +46,7 @@ exports.config = {
       runName:
         'sidecar_E2E_web test run ' +
         moment().format('MMMM Do YYYY, h:mm:ss a'),
-      closeTestRun: true,
+      closeTestRun: false,
       debugLog: false,
     },
   },

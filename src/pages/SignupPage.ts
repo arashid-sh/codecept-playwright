@@ -1,26 +1,27 @@
-const accountPage = require('../pages/AccountPage');
-const LoginPage = require('./LoginPage');
-const customerFactory = require('../factories/customer');
-const Card = require('../factories/creditcard');
-const { switchToFrameAndType } = require('../lib/util');
+import accountPage from '../pages/AccountPage';
+import LoginPage from './LoginPage';
+import customerFactory from '../factories/CustomerFactory';
+import Card from '../factories/CreditCardFactory';
 const { I } = inject();
 
-module.exports = {
+export const SignupPage = {
   elements: {
     cardHolderName: {
       css: '[data-qaid=input_cardholderName_subscription]',
     },
     cardNumber: {
-      css: 'input[name="cardnumber"]',
+      //css: 'input[name="cardnumber"]',
+      xpath: '//div[@data-qaid="input_cardNumber_subscription"]',
     },
     cardExpDate: {
-      css: 'input[name="exp-date"]',
+      xpath: '//div[@data-qaid="input_cardExpiry_subscription"]',
+      //css: 'input[name="exp-date"]',
     },
     cardCvc: {
       css: 'input[name="cvc"]',
     },
     cardZipCode: {
-      css: 'input[name="postal"]',
+      xpath: '//div[@data-qaid="input_cardPostalCode_subscription"]',
     },
     cardNumberFrame: {
       css: '[title="Secure card number input frame"]',
@@ -29,13 +30,13 @@ module.exports = {
       css: '[title="Secure expiration date input frame"]',
     },
     cardCvcFrame: {
-      css: '[title="Secure CVC input frame"]',
+      css: '//div[@data-qaid="input_cardCVC_subscription"]',
     },
     cardZipcodeFrame: {
       css: '[title="Secure postal code input frame"]',
     },
     cardAutoPayment: {
-      css: '//input[@data-qaid="input_autopaymentExpense"]/..',
+      xpath: '//input[@data-qaid="input_autopaymentExpense"]/..',
     },
     continueButton: {
       css: '//button[@label="Continue"]',
@@ -88,8 +89,8 @@ module.exports = {
    * A function to verify signup page
    */
 
-  async verifySignupPage() {
-    I.waitForElement(this.elements.zipCode, 5);
+  async verifySignupPage(): Promise<void> {
+    I.waitForElement(SignupPage.elements.zipCode, 5);
     I.waitForText('Start your insurance quote now');
     I.waitForText('First, where do you live?');
   },
@@ -98,7 +99,7 @@ module.exports = {
    * A function to select generated customer's gender.
    * @param {string} gender is registered user's gender. Created by createCustomer() function
    */
-  async selectGender(gender) {
+  async selectGender(gender): Promise<void> {
     I.click(`[data-qaid=input_${gender}-label]`);
   },
 
@@ -106,68 +107,64 @@ module.exports = {
    * A function to register an eb user with provided package
    * @param {string} package name of the coverage
    */
-  async registerEbUser(package) {
-    const card = Card.build();
+  async registerEbUser(packageName: string): Promise<string> {
+    const card = Card.createCreditCard();
     await accountPage.getPaymentInfo(card);
     const customer = await customerFactory.createCustomer();
     //console.log(customer);
-    I.waitForElement(this.elements.zipCode);
-    I.fillField(this.elements.zipCode, customer.zipcode);
-    I.click(this.elements.continueButton);
-    I.waitForElement(this.elements.customerName, 15);
-    I.fillField(this.elements.customerName, customer.firstName);
-    I.fillField(this.elements.customerLastName, customer.lastName);
+    I.waitForElement(SignupPage.elements.zipCode);
+    I.fillField(SignupPage.elements.zipCode, customer.zipcode);
+    I.click(SignupPage.elements.continueButton);
+    I.waitForElement(SignupPage.elements.customerName, 15);
+    I.fillField(SignupPage.elements.customerName, customer.firstName);
+    I.fillField(SignupPage.elements.customerLastName, customer.lastName);
     I.fillField(LoginPage.elements.email, customer.email);
-    I.fillField(this.elements.customerBirthday, customer.birthday);
+    I.fillField(SignupPage.elements.customerBirthday, customer.birthday);
     this.selectGender(customer.gender);
     I.scrollPageToBottom();
-    I.click(this.elements.seeQuotesButton);
-    I.waitForElement(`[data-qaid=btn_select_${package}]`, 15);
-    I.click(`[data-qaid=btn_select_${package}]`);
+    I.click(SignupPage.elements.seeQuotesButton);
+    I.waitForElement(`[data-qaid=btn_select_${packageName}]`, 15);
+    I.click(`[data-qaid=btn_select_${packageName}]`);
     I.waitForElement(LoginPage.elements.password);
     I.click(LoginPage.elements.password);
-    I.type(customer.password, 100);
-    I.click(this.elements.signUpButton);
-    I.waitForElement(this.elements.streetAddress);
-    I.fillField(this.elements.streetAddress, customer.streetAddress);
-    I.fillField(this.elements.customerPhone, customer.phoneNumber);
-    I.fillField(this.elements.cardHolderName, 'Sidecar Health Test');
-    switchToFrameAndType(
-      this.elements.cardNumberFrame,
-      this.elements.cardNumber,
-      card.cardNumber
-    );
-    switchToFrameAndType(
-      this.elements.cardExpDateFrame,
-      this.elements.cardExpDate,
-      `${card.expirationMonth}/${card.expirationYear.substr(2)}`
-    );
-    switchToFrameAndType(
-      this.elements.cardCvcFrame,
-      this.elements.cardCvc,
-      card.cvv
-    );
-    switchToFrameAndType(
-      this.elements.cardZipcodeFrame,
-      this.elements.cardZipCode,
-      card.postalCode
-    );
-    I.fillField(this.elements.customerSsn, customer.ssn);
-    I.click(this.elements.cardAutoPayment);
-    I.click(this.elements.agreeTelemarketing);
-    I.click(this.elements.agreeElectronicSent);
-    I.click(this.elements.agreeAcknowledgement);
-    I.click(this.elements.reviewApplication);
-    I.waitForElement(this.elements.submitAndPayButton, 20);
-    I.click(this.elements.submitAndPayButton);
+    I.type(customer.password);
+    I.click(SignupPage.elements.signUpButton);
+    I.waitForElement(SignupPage.elements.streetAddress);
+    I.fillField(SignupPage.elements.streetAddress, customer.streetAddress);
+    I.fillField(SignupPage.elements.customerPhone, customer.phoneNumber);
+    //Entering CC info
+    I.fillField(SignupPage.elements.cardHolderName, 'Sidecar Health Test');
+
+    I.click(SignupPage.elements.cardNumber);
+    I.type(card.cardNumber, 100);
+
+    I.click(SignupPage.elements.cardExpDate);
+    I.type(card.expirationMonth + '/' + card.expirationYear);
+
+    I.click(SignupPage.elements.cardCvcFrame);
+    I.type(card.cvv);
+
+    I.click(SignupPage.elements.cardZipCode);
+    I.type(card.postalCode);
+
+    I.fillField(SignupPage.elements.customerSsn, customer.ssn);
+    I.click(SignupPage.elements.cardAutoPayment);
+    I.click(SignupPage.elements.agreeTelemarketing);
+    I.click(SignupPage.elements.agreeElectronicSent);
+    I.click(SignupPage.elements.agreeAcknowledgement);
+    I.click(SignupPage.elements.reviewApplication);
+    I.waitForElement(SignupPage.elements.submitAndPayButton, 20);
+    I.click(SignupPage.elements.submitAndPayButton);
     return customer.firstName;
   },
 
   /**
    * A function to validate order confirmation on signup page
    */
-  async verifySingupOrderSummary() {
+  async verifySingupOrderSummary(): Promise<void> {
     I.waitForText('Congrats! Your policy starts', 15);
     I.waitForText('Order summary');
   },
 };
+
+export default SignupPage;

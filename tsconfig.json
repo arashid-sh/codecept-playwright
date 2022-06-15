@@ -1,0 +1,19 @@
+{
+  "ts-node": {
+    "files": true
+  },
+  "compilerOptions": {
+    "allowJs": true,
+    "target": "ESNext",
+    "lib": ["ES2020", "DOM"],
+    "esModuleInterop": true,
+    "module": "commonjs",
+    "strictNullChecks": true,
+    "noUnusedLocals": false,
+    "resolveJsonModule": true,
+    "noUnusedParameters": false,
+    "moduleResolution": "node",
+    "types": ["node", "codeceptjs"]
+  },
+  "include": ["./**/*.ts", "./src/**/*"]
+}
