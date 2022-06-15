@@ -1,4 +1,4 @@
-import CreditCard from '../Services/types/creditCard';
+import CreditCard from '../services/types/creditCard';
 const { I } = inject();
 
 export const AccountPage = {
