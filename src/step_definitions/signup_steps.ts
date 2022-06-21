@@ -10,11 +10,11 @@ Before((test) => {
   sharedStore = ContextProvider.getInstance(test.id).sharedStore;
 });
 
-Given(
-  'I register an EB user with {string} package',
-  async (packageType: string) => {
+When(
+  'I register an EB user with {string} package and {string} state',
+  async (state:string, packageType: string) => {
     sharedStore.setState({
-      firstName: await SignupPage.registerEbUser(packageType),
+      firstName: await SignupPage.registerEbUser(packageType, state),
     });
   }
 );
@@ -22,3 +22,8 @@ Given(
 Then('I validate order summary page appears', async () => {
   await SignupPage.verifySingupOrderSummary();
 });
+
+
+When('I register an ACA user with {string} package for {string} state', async(packageName: string, state: string)=>{
+  await SignupPage.registerACAUser(state, packageName);
+})

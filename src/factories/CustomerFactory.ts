@@ -1,5 +1,5 @@
 import { Customer } from '../services/types/customer';
-
+import { ADDRESSES } from '../constants';
 import { faker } from '@faker-js/faker';
 //const { getRandomInt } = require('../lib/util');
 require('dotenv').config();
@@ -17,7 +17,26 @@ export const CustomerFactory = {
      * @function
      */
 
-  async createCustomer(): Promise<Customer> {
+  async getAddress(state: string){
+    let zipcode;
+    let streetAddress;
+    switch (state) {
+        case 'TX':
+          zipcode = ADDRESSES.TX_ZIPCODE;
+          streetAddress = ADDRESSES.TX_STREET;
+            break;
+        case 'OH':
+          zipcode = ADDRESSES.OH_ZIPCODE;
+          streetAddress = ADDRESSES.OH_STREET
+            break;
+        default:
+            throw new Error(`${state} is not a valid state`);
+    }
+    return {zipcode,streetAddress};
+  },
+
+  async createCustomer(state: string): Promise<Customer> {
+    const address = await this.getAddress(state);
     return {
       firstName: `${faker.name.firstName()}scqa`,
       lastName: `${faker.name.lastName()}scqa`,
@@ -34,12 +53,10 @@ export const CustomerFactory = {
         '503-76-6945',
         '428-84-6441',
       ]), //getRandomInt(10000000,999999999),
-      streetAddress: '2800 MACGREGOR WAY',
-      //streetAddress : faker.address.streetAddress(),
-      zipcode: '77021',
-      //zipcode: getRandomInt(1,9).toString().padStart(5, 8410),
+      streetAddress: address.streetAddress,
+      zipcode: address.zipcode,
       gender: faker.helpers.arrayElement(['MALE', 'FEMALE']),
-      phoneNumber: faker.phone.phoneNumberFormat(),
+      phoneNumber: faker.phone.phoneNumber(),
     };
   },
 };
