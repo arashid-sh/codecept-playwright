@@ -1,5 +1,5 @@
  Feature: Sidecar Registration Flow
-    @Smoke
+    @Smoke @C8849
     Scenario Outline: EB user should be able to successfully register with all provided packages
         Given I navigate to login page
         And I navigate to sign up page
@@ -14,7 +14,7 @@
         |premiumPackage|TX|
         |customizedPackage|TX|
         
-    @Smoke
+    @Smoke @C9302
     Scenario Outline: ACA user should be able to successfully register with all provided packages
         Given I navigate to login page
         And I navigate to sign up page
