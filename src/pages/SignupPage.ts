@@ -126,7 +126,7 @@ export const SignupPage = {
    * @param {string} package name of the coverage
    * @param {string} state state of the coverage
    */
-  async registerEbUser(state,packageName: string): Promise<string> {
+  async registerEbUser(state: string,packageName: string): Promise<string> {
     const card = Card.createCreditCard();
     await accountPage.getPaymentInfo(card);
     const customer = await customerFactory.createCustomer(state);
@@ -177,7 +177,7 @@ export const SignupPage = {
    * @param {string} package name of the coverage
    * @param {string} state state of the coverage
    */
-     async registerACAUser(state, packageName: string): Promise<string> {
+     async registerACAUser(state: string, packageName: string): Promise<string> {
       const card = Card.createCreditCard();
       await accountPage.getPaymentInfo(card);
       const customer = await customerFactory.createCustomer(state);
