@@ -166,7 +166,7 @@ export const SignupPage = {
     I.click(SignupPage.elements.agreeTelemarketing);
     I.click(SignupPage.elements.agreeElectronicSent);
     I.click(SignupPage.elements.agreeAcknowledgement);
-    I.click(SignupPage.elements.reviewACAApplication);
+    I.click(SignupPage.elements.reviewApplication);
     I.waitForElement(SignupPage.elements.submitAndPayButton, 20);
     I.click(SignupPage.elements.submitAndPayButton);
     return customer.firstName;
