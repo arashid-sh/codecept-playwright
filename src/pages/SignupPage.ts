@@ -56,6 +56,15 @@ export const SignupPage = {
     customerSsn: {
       css: '[data-qaid=input_ssn_0]',
     },
+    qleDate:{
+      css: '[data-qaid="input_qleDate"]',
+    },
+    qleDatetoday: {
+      xpath: '//*[contains(text(),"Today")]',
+    },
+    lifeEvent: {
+      css: '[data-qaid="life_event"]',
+    },
     seeQuotesButton: {
       css: '[data-qaid=btn_continue]',
     },
@@ -80,8 +89,17 @@ export const SignupPage = {
     agreeAcknowledgement: {
       css: '//input[@data-qaid="input_acknowledgement"]/..',
     },
+    agreeAcknowledgement2: {
+      css: '//input[@data-qaid="input_acknowledgement2"]/..',
+    },
+    agreeAcknowledgement3: {
+      css: '//input[@data-qaid="input_acknowledgement3"]/..',
+    },
     reviewApplication: {
       css: '[data-qaid=btn_prepareApplication]',
+    },
+    reviewACAApplication: {
+      css: '[data-qaid=btn_enrollOffExchange]',
     },
   },
 
@@ -106,11 +124,12 @@ export const SignupPage = {
   /**
    * A function to register an eb user with provided package
    * @param {string} package name of the coverage
+   * @param {string} state state of the coverage
    */
-  async registerEbUser(packageName: string): Promise<string> {
+  async registerEbUser(state: string,packageName: string): Promise<string> {
     const card = Card.createCreditCard();
     await accountPage.getPaymentInfo(card);
-    const customer = await customerFactory.createCustomer();
+    const customer = await customerFactory.createCustomer(state);
     //console.log(customer);
     I.waitForElement(SignupPage.elements.zipCode);
     I.fillField(SignupPage.elements.zipCode, customer.zipcode);
@@ -134,19 +153,14 @@ export const SignupPage = {
     I.fillField(SignupPage.elements.customerPhone, customer.phoneNumber);
     //Entering CC info
     I.fillField(SignupPage.elements.cardHolderName, 'Sidecar Health Test');
-
     I.click(SignupPage.elements.cardNumber);
     I.type(card.cardNumber, 100);
-
     I.click(SignupPage.elements.cardExpDate);
     I.type(card.expirationMonth + '/' + card.expirationYear);
-
     I.click(SignupPage.elements.cardCvcFrame);
     I.type(card.cvv);
-
     I.click(SignupPage.elements.cardZipCode);
     I.type(card.postalCode);
-
     I.fillField(SignupPage.elements.customerSsn, customer.ssn);
     I.click(SignupPage.elements.cardAutoPayment);
     I.click(SignupPage.elements.agreeTelemarketing);
@@ -158,11 +172,66 @@ export const SignupPage = {
     return customer.firstName;
   },
 
+    /**
+   * A function to register an ACA user with provided packages
+   * @param {string} package name of the coverage
+   * @param {string} state state of the coverage
+   */
+     async registerACAUser(state: string, packageName: string): Promise<string> {
+      const card = Card.createCreditCard();
+      await accountPage.getPaymentInfo(card);
+      const customer = await customerFactory.createCustomer(state);
+      //console.log(customer);
+      I.waitForElement(SignupPage.elements.zipCode);
+      I.fillField(SignupPage.elements.zipCode, customer.zipcode);
+      I.click(SignupPage.elements.continueButton);
+      I.waitForElement(SignupPage.elements.lifeEvent, 15);
+      const element1 =locate('span').withText('Marriage or domestic partnership');
+      I.click(element1);
+      I.click(this.elements.qleDate);
+      I.click(this.elements.qleDatetoday);
+      I.click(this.elements.continueButton);
+      I.waitForElement(SignupPage.elements.customerName, 15);
+      I.fillField(SignupPage.elements.customerName, customer.firstName);
+      I.fillField(SignupPage.elements.customerLastName, customer.lastName);
+      I.fillField(LoginPage.elements.email, customer.email);
+      I.fillField(SignupPage.elements.customerBirthday, customer.birthday);
+      this.selectGender(customer.gender);
+      I.scrollPageToBottom();
+      I.click(SignupPage.elements.seeQuotesButton);
+      I.waitForElement(`[data-qaid=btn_select_${packageName}]`, 15);
+      I.click(`[data-qaid=btn_select_${packageName}]`);
+      I.waitForElement(LoginPage.elements.password);
+      I.click(LoginPage.elements.password);
+      I.type(customer.password);
+      I.click(SignupPage.elements.signUpButton);
+      I.waitForElement(SignupPage.elements.streetAddress);
+      I.fillField(SignupPage.elements.streetAddress, customer.streetAddress);
+      I.fillField(SignupPage.elements.customerPhone, customer.phoneNumber);
+      I.fillField(SignupPage.elements.cardHolderName, 'Sidecar Health Test');
+      I.click(SignupPage.elements.cardNumber);
+      I.type(card.cardNumber, 100);
+      I.click(SignupPage.elements.cardExpDate);
+      I.type(card.expirationMonth + '/' + card.expirationYear);
+      I.click(SignupPage.elements.cardCvcFrame);
+      I.type(card.cvv);
+      I.click(SignupPage.elements.cardZipCode);
+      I.type(card.postalCode);
+      I.fillField(SignupPage.elements.customerSsn, customer.ssn);
+      I.click(SignupPage.elements.cardAutoPayment);
+      I.click(SignupPage.elements.agreeAcknowledgement);
+      I.click(SignupPage.elements.agreeAcknowledgement2);
+      I.click(SignupPage.elements.agreeAcknowledgement3);
+      I.click(SignupPage.elements.reviewACAApplication);
+      I.waitForElement(SignupPage.elements.submitAndPayButton, 20);
+      I.click(SignupPage.elements.submitAndPayButton);
+      return customer.firstName;
+    },
   /**
    * A function to validate order confirmation on signup page
    */
   async verifySingupOrderSummary(): Promise<void> {
-    I.waitForText('Congrats! Your policy starts', 15);
+    I.waitForText('Congrats! Your policy', 20);
     I.waitForText('Order summary');
   },
 };
