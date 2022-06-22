@@ -231,7 +231,7 @@ export const SignupPage = {
    * A function to validate order confirmation on signup page
    */
   async verifySingupOrderSummary(): Promise<void> {
-    I.waitForText('Congrats! Your policy', 15);
+    I.waitForText('Congrats! Your policy', 20);
     I.waitForText('Order summary');
   },
 };
