@@ -1,4 +1,5 @@
 import { faker } from '@faker-js/faker';
+import moment from 'moment';
 
 export const asoSubscriber = {
   /**
@@ -6,7 +7,7 @@ export const asoSubscriber = {
    * @param option: the kind of ASO subscriber you would like to create. Single, w/ spouse, family (spouse and child)
    * @returns: payloads for each of the subscribers specified.
    */
-  async generatePayload(emailAddress: string, option: string): Promise<any> {
+  generatePayload(emailAddress: string, option: string): any {
     // Option 'single' = ASO single subscriber
     // Option 'with spouse' = ASO subscriber + spouse
     // Option 'family' = ASO subscriber + spouse + child
@@ -70,7 +71,7 @@ export const asoSubscriber = {
                     "tier_code": "EMP ",
                     "benefit_package_code": "SHIC_SIDECAR_2022_1400",
                     "coverage_level": "Employee Only",
-                    "benefits_begin_date": "2022-05-25"
+                    "benefits_begin_date": "${moment().format('YYYY-MM-DD')}"
                   }
                 }
               ],
@@ -150,7 +151,7 @@ export const asoSubscriber = {
                   "tier_code": "ESP ",
                   "benefit_package_code": "SHIC_SIDECAR_2022_1400",
                   "coverage_level": "Employee and Spouse",
-                  "benefits_begin_date": "2022-05-23"
+                  "benefits_begin_date": "${moment().format('YYYY-MM-DD')}"
                 }
               },
               {
@@ -168,7 +169,7 @@ export const asoSubscriber = {
                 "member_details": {
                   "last_name": "${faker.name.firstName()}",
                   "first_name": "${faker.name.lastName()} spouse",
-                  "middle_name": "",
+                  "middle_name": "spouse",
                   "name_prefix": "",
                   "name_suffix": "",
                   "ssn": "334387773",
@@ -197,7 +198,7 @@ export const asoSubscriber = {
                   "policy_action": "Addition",
                   "tier_code": "ESP ",
                   "benefit_package_code": "SHIC_SIDECAR_2022_1400",
-                  "benefits_begin_date": "2022-05-23"
+                  "benefits_begin_date": "${moment().format('YYYY-MM-DD')}"
                 }
               }
             ],
@@ -277,7 +278,9 @@ export const asoSubscriber = {
                               "tier_code": "FAM ",
                               "benefit_package_code": "SHIC_SIDECAR_2022_1400",
                               "coverage_level": "Family",
-                              "benefits_begin_date": "2022-05-23"
+                              "benefits_begin_date": "${moment().format(
+                                'YYYY-MM-DD'
+                              )}"
                           }
                       },
                       {
@@ -295,7 +298,7 @@ export const asoSubscriber = {
                           "member_details": {
                               "last_name": "${faker.name.firstName()}",
                               "first_name": "${faker.name.lastName()}",
-                              "middle_name": "",
+                              "middle_name": "spouse",
                               "name_prefix": "",
                               "name_suffix": "",
                               "ssn": "447462222",
@@ -324,7 +327,9 @@ export const asoSubscriber = {
                               "policy_action": "Addition",
                               "tier_code": "FAM ",
                               "benefit_package_code": "SHIC_SIDECAR_2022_1400",
-                              "benefits_begin_date": "2022-05-23"
+                              "benefits_begin_date": "${moment().format(
+                                'YYYY-MM-DD'
+                              )}"
                           }
                       },
                       {
@@ -342,7 +347,7 @@ export const asoSubscriber = {
                           "member_details": {
                               "last_name": "${faker.name.firstName()}",
                               "first_name": "${faker.name.lastName()}",
-                              "middle_name": "",
+                              "middle_name": "child",
                               "name_prefix": "",
                               "name_suffix": "",
                               "ssn": "334387765",
@@ -371,7 +376,9 @@ export const asoSubscriber = {
                               "policy_action": "Addition",
                               "tier_code": "FAM ",
                               "benefit_package_code": "SHIC_SIDECAR_2022_1400",
-                              "benefits_begin_date": "2022-05-23"
+                              "benefits_begin_date": "${moment().format(
+                                'YYYY-MM-DD'
+                              )}"
                           }
                       }
                   ],

@@ -20,11 +20,18 @@ Feature: Account tests should be under this section
     
     Scenario: Template for logging in as a single ASO subscriber  
         Given I login as an ASO subscriber
-
     
     Scenario: Template for logging in as an ASO subscriber with spouse 
         Given I login as an ASO subscriber with a spouse
-    
-   
+
     Scenario: Template for logging in as an ASO subscriber with spouse and child
         Given I login as an ASO subscriber with a spouse and a child
+
+    Scenario: Template for logging in as a single GFI subscriber  
+        Given I login as an GFI subscriber
+
+    Scenario: Template for logging in as an GFI subscriber with spouse 
+        Given I login as an GFI subscriber with a spouse
+
+    Scenario: Template for logging in as an GFI subscriber with spouse and child
+        Given I login as an GFI subscriber with a spouse and a child

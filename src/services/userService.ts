@@ -2,6 +2,8 @@ import axios, { AxiosResponse } from 'axios';
 import asoSubSpouse from '../payloads/asoSubscriber';
 import { faker } from '@faker-js/faker';
 import { mailosaurEmailService } from './mailosaurEmailService';
+import moment from 'moment';
+import gfiSubscriber from '../payloads/gfiSubscriber';
 const { I } = inject();
 
 export const CreateUser = {
@@ -28,24 +30,32 @@ export const CreateUser = {
   },
 
   /**
-   * Method creates an ASO user. The payload is generated and called from payloads folder. The method then retrieves the sign up link from the email
+   * Method creates an user. The payload is generated and called from payloads folder. The method then retrieves the sign up link from the email
    * sent to the user.
-   * returns: sign up link from the user's inbox
+   * @param planType : ASO or GFI
+   * @param option :
    * Option 'single' = ASO single subscriber
    * Option 'with spouse' = ASO subscriber + spouse
    * Option 'family' = ASO subscriber + spouse + child
-   *
-   * Note: 'single' option is set as default
-   * */
-  async asoUser(option = 'single'): Promise<any> {
+   * @returns: sign up link from the user's inbox
+   */
+  async createUser(planType: string, option: string): Promise<any> {
+    let payload = '';
     const emailAddress =
       faker.internet.userName() + '_scqa@d6n3iagn.mailosaur.net'; //Generating email address that will be used in the payload and also to retrieve sign up link from mailosaur
+
     console.log(`-------- Creating account for user: ${emailAddress} --------`);
+
+    if (planType === 'ASO')
+      payload = asoSubSpouse.generatePayload(emailAddress, option);
+    if (planType === 'GFI')
+      payload = gfiSubscriber.generatePayload(emailAddress, option);
+
     const token = await CreateUser.getToken(); //Getting the admin token used to send to the APIs when sending a request in the header.
     try {
       const response: AxiosResponse = await axios.post(
         'https://qa-api.sidecarhealth.com/easo/v1/enrollments',
-        await asoSubSpouse.generatePayload(emailAddress, option),
+        payload,
         {
           headers: {
             token: token,
@@ -56,10 +66,7 @@ export const CreateUser = {
     } catch (error) {
       console.log(`Error in asoUser(): ${error.response}`);
     }
-    const registrationURL = await mailosaurEmailService.getRegistrationURL(
-      emailAddress
-    );
-    return registrationURL;
+    return await mailosaurEmailService.getRegistrationURL(emailAddress);
   },
 };
 

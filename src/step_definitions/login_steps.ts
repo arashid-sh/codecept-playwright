@@ -2,7 +2,7 @@ import loginPage from '../pages/LoginPage';
 import homePage from '../pages/HomePage';
 import forgotPasswordPage from '../pages/ForgotPasswordPage';
 import { SignupPage } from '../pages';
-import createUserService from '../services/createUserService';
+import userService from '../services/userService';
 import RegisterPage from '../pages/RegisterPage';
 
 const { I } = inject();
@@ -65,16 +65,31 @@ Then(
 );
 
 Given('I login as an ASO subscriber', async () => {
-  RegisterPage.registerUser(await createUserService.asoUser());
+  RegisterPage.registerUser(await userService.createUser('ASO', 'single'));
   I.amOnPage('/account/profile');
 });
 
 Given('I login as an ASO subscriber with a spouse', async () => {
-  RegisterPage.registerUser(await createUserService.asoUser('with spouse'));
+  RegisterPage.registerUser(await userService.createUser('ASO', 'with spouse'));
   I.amOnPage('/account/profile');
 });
 
 Given('I login as an ASO subscriber with a spouse and a child', async () => {
-  RegisterPage.registerUser(await createUserService.asoUser('family'));
+  RegisterPage.registerUser(await userService.createUser('ASO', 'family'));
+  I.amOnPage('/account/profile');
+});
+
+Given('I login as an GFI subscriber', async () => {
+  RegisterPage.registerUser(await userService.createUser('GFI', 'single'));
+  I.amOnPage('/account/profile');
+});
+
+Given('I login as an GFI subscriber with a spouse', async () => {
+  RegisterPage.registerUser(await userService.createUser('GFI', 'with spouse'));
+  I.amOnPage('/account/profile');
+});
+
+Given('I login as an GFI subscriber with a spouse and a child', async () => {
+  RegisterPage.registerUser(await userService.createUser('GFI', 'family'));
   I.amOnPage('/account/profile');
 });
