@@ -9,6 +9,8 @@ type HomePage = typeof import('./src/pages/HomePage');
 type LoginPage = typeof import('./src/pages/LoginPage');
 type SignupPage = typeof import('./src/pages/SignupPage');
 type DoctorsPage = typeof import('./src/pages/DoctorsPage');
+type OrderBenefitCardPage = typeof import('./src/pages/OrderBenefitCardPage');
+type RegisterPage = typeof import('./src/pages/RegisterPage');
 
 declare function inject(): CodeceptJS.SupportObject;
 declare function inject<T extends keyof CodeceptJS.SupportObject>(
@@ -26,6 +28,8 @@ declare namespace CodeceptJS {
     HomePage: HomePage;
     LoginPage: LoginPage;
     SignupPage: SignupPage;
+    OrderBenefitCardPage: OrderBenefitCardPage;
+    RegisterPage: RegisterPage;
   }
 
   interface Methods extends Playwright {}

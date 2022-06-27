@@ -19,6 +19,13 @@ exports.config = {
       video: true,
       trace: true,
       restart: true,
+      chromium: {
+        args: [
+          '--disable-notifications',
+          '--deny-permission-prompts',
+          '--disable-web-security',
+        ],
+      },
     },
     ShortCutStepsHelper: {
       require: './../src/helpers/ShortCutStepsHelper.ts',
