@@ -18,3 +18,4 @@ Feature: Sidecar Login Flow
         Given I navigate to login page
         When I try to login with invalid credentials
         Then I validate invalid login response
+        
