@@ -17,22 +17,22 @@ export const CustomerFactory = {
      * @function
      */
 
-  async getAddress(state: string){
+  async getAddress(state: string) {
     let zipcode;
     let streetAddress;
     switch (state) {
-        case 'TX':
-          zipcode = ADDRESSES.TX_ZIPCODE;
-          streetAddress = ADDRESSES.TX_STREET;
-            break;
-        case 'OH':
-          zipcode = ADDRESSES.OH_ZIPCODE;
-          streetAddress = ADDRESSES.OH_STREET
-            break;
-        default:
-            throw new Error(`${state} is not a valid state`);
+      case 'TX':
+        zipcode = ADDRESSES.TX_ZIPCODE;
+        streetAddress = ADDRESSES.TX_STREET;
+        break;
+      case 'OH':
+        zipcode = ADDRESSES.OH_ZIPCODE;
+        streetAddress = ADDRESSES.OH_STREET;
+        break;
+      default:
+        throw new Error(`${state} is not a valid state`);
     }
-    return {zipcode,streetAddress};
+    return { zipcode, streetAddress };
   },
 
   async createCustomer(state: string): Promise<Customer> {

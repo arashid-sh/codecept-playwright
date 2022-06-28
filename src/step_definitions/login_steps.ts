@@ -2,6 +2,8 @@ import loginPage from '../pages/LoginPage';
 import homePage from '../pages/HomePage';
 import forgotPasswordPage from '../pages/ForgotPasswordPage';
 import { SignupPage } from '../pages';
+import createUserService from '../services/createUserService';
+import RegisterPage from '../pages/RegisterPage';
 
 const { I } = inject();
 
@@ -61,3 +63,18 @@ Then(
     await forgotPasswordPage.verifyResettingPassword(emailAddress);
   }
 );
+
+Given('I login as an ASO subscriber', async () => {
+  RegisterPage.registerUser(await createUserService.asoUser());
+  I.amOnPage('/account/profile');
+});
+
+Given('I login as an ASO subscriber with a spouse', async () => {
+  RegisterPage.registerUser(await createUserService.asoUser('with spouse'));
+  I.amOnPage('/account/profile');
+});
+
+Given('I login as an ASO subscriber with a spouse and a child', async () => {
+  RegisterPage.registerUser(await createUserService.asoUser('family'));
+  I.amOnPage('/account/profile');
+});
